@@ -2,6 +2,22 @@ body {
   background-color: #288c25;
 }
 
+.north {
+  transform: rotate(-90deg);
+}
+
 .racecar {
   width: 150px;
+}
+
+.south {
+  transform: rotate(90deg);
+}
+
+.west {
+  transform: rotate(180deg);
+}
+
+.east {
+  transform: rotate(0deg);
 }
