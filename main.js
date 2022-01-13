@@ -1,7 +1,9 @@
 /* global data */
 
 var $racecar = document.querySelector('.racecar');
+
 document.addEventListener('keydown', changeDirection);
+document.addEventListener('keydown', handleSpacebar);
 
 function changeDirection(event) {
   if (event.key === 'w') {
@@ -15,11 +17,21 @@ function changeDirection(event) {
   }
 }
 
-var racecarMovement = 0;
-setInterval(startCar, 16);
+var distance = 0;
+var interval = null;
 
-function startCar(event) {
-  racecarMovement++;
-  $racecar.style.left = racecarMovement + 'rem';
-  data.xCoordinate = racecarMovement;
+function handleSpacebar(event) {
+  if (event.keyCode === 32 && data.engineRunning === false) {
+    interval = setInterval(moveCar, 16);
+    data.engineRunning = true;
+  } else if (event.keyCode === 32 && data.engineRunning === true) {
+    clearInterval(interval);
+    data.engineRunning = false;
+  }
+}
+
+function moveCar(event) {
+  distance++;
+  $racecar.style.left = distance + 'rem';
+  data.xCoordinate = distance;
 }
