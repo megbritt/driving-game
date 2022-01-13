@@ -1,3 +1,5 @@
+/* global data */
+
 var $racecar = document.querySelector('.racecar');
 document.addEventListener('keydown', changeDirection);
 
@@ -11,4 +13,13 @@ function changeDirection(event) {
   } else if (event.key === 'd') {
     $racecar.setAttribute('class', 'racecar east');
   }
+}
+
+var racecarMovement = 0;
+setInterval(startCar, 16);
+
+function startCar(event) {
+  racecarMovement++;
+  $racecar.style.left = racecarMovement + 'rem';
+  data.xCoordinate = racecarMovement;
 }

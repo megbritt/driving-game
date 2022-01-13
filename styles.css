@@ -4,20 +4,25 @@ body {
 
 .north {
   transform: rotate(-90deg);
+  transition: transform 0.5s;
 }
 
 .racecar {
+  position: absolute;
   width: 150px;
 }
 
 .south {
   transform: rotate(90deg);
+  transition: transform 0.5s;
 }
 
 .west {
   transform: rotate(180deg);
+  transition: transform 0.5s;
 }
 
 .east {
   transform: rotate(0deg);
+  transition: transform 0.5s;
 }
