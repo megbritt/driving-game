@@ -1,28 +1,30 @@
 body {
-  background-color: #288c25;
+  background-color: rgb(69, 69, 69);
+  background-image: url("images/track.png");
+}
+
+img {
+  height: 100px;
+  width: auto;
+  transition-duration: 0.3s;
+  transition-property: transform;
+  position: absolute;
+  left: 5px;
+  top: 5px;
 }
 
 .north {
   transform: rotate(-90deg);
-  transition: transform 0.5s;
-}
-
-.racecar {
-  position: absolute;
-  width: 150px;
-}
-
-.south {
-  transform: rotate(90deg);
-  transition: transform 0.5s;
-}
-
-.west {
-  transform: rotate(180deg);
-  transition: transform 0.5s;
 }
 
 .east {
   transform: rotate(0deg);
-  transition: transform 0.5s;
+}
+
+.south {
+  transform: rotate(90deg);
+}
+
+.west {
+  transform: rotate(180deg);
 }

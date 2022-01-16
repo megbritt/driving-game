@@ -1,37 +1,62 @@
-/* global data */
+var $imgElement = document.querySelector('img');
+var direction = $imgElement.style;
+var intervalID = null;
 
-var $racecar = document.querySelector('.racecar');
+window.addEventListener('keydown', handleKeydown);
 
-document.addEventListener('keydown', changeDirection);
-document.addEventListener('keydown', handleSpacebar);
+function handleKeydown(event) {
 
-function changeDirection(event) {
   if (event.key === 'w') {
-    $racecar.setAttribute('class', 'racecar north');
+    $imgElement.className = 'north';
+    data.carDirection = 'north';
+
   } else if (event.key === 'a') {
-    $racecar.setAttribute('class', 'racecar west');
-  } else if (event.key === 's') {
-    $racecar.setAttribute('class', 'racecar south');
+    $imgElement.className = 'west';
+    data.carDirection = 'west';
+
+  } if (event.key === 's') {
+    $imgElement.className = 'south';
+    data.carDirection = 'south';
+
   } else if (event.key === 'd') {
-    $racecar.setAttribute('class', 'racecar east');
+    $imgElement.className = 'east';
+    data.carDirection = 'east';
+
+  }
+
+  if (event.key === ' ') {
+    if (!intervalID) {
+      intervalID = setInterval(moveCar, 16);
+    } else {
+      clearInterval(intervalID);
+      intervalID = null;
+    }
   }
 }
 
-var distance = 0;
-var interval = null;
-
-function handleSpacebar(event) {
-  if (event.keyCode === 32 && data.engineRunning === false) {
-    interval = setInterval(moveCar, 16);
-    data.engineRunning = true;
-  } else if (event.keyCode === 32 && data.engineRunning === true) {
-    clearInterval(interval);
-    data.engineRunning = false;
+var data = {
+  carDirection: null,
+  location: {
+    x: direction.left,
+    y: direction.top
   }
-}
+};
 
-function moveCar(event) {
-  distance++;
-  $racecar.style.left = distance + 'rem';
-  data.xCoordinate = distance;
+data.location.x = 5;
+data.location.y = 5;
+
+function moveCar() {
+  if ($imgElement.className === 'east') {
+    direction.left = (data.location.x * 5) + 'px';
+    data.location.x += 5;
+  } else if ($imgElement.className === 'south') {
+    direction.top = (data.location.y * 5) + 'px';
+    data.location.y += 5;
+  } else if ($imgElement.className === 'west') {
+    direction.left = (data.location.x * 5) + 'px';
+    data.location.x -= 5;
+  } else if ($imgElement.className === 'north') {
+    direction.top = (data.location.y * 5) + 'px';
+    data.location.y -= 5;
+  }
 }
